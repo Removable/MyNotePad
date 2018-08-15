@@ -24,5 +24,23 @@ namespace MyNotePad
         {
             InitializeComponent();
         }
+
+        private void CreateNewWindow(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(MainTextBox.Text))
+            {
+                var result = MessageBox.Show("是否保存当前内容？", "记事本", MessageBoxButton.YesNoCancel);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        break;
+                    case MessageBoxResult.No:
+                        MainTextBox.Text = string.Empty;
+                        break;
+                    case MessageBoxResult.Cancel:
+                        break;
+                }
+            }
+        }
     }
 }

@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyNotePad"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="记事本" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,0.5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="403*"/>
+        </Grid.RowDefinitions>
+        <Menu x:Name="Menu" Grid.Row="0" Background="White">
+            <MenuItem Header="文件" Height="20" Width="38">
+                <MenuItem Header="新建" Click="CreateNewWindow"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <TextBox x:Name="MainTextBox" Grid.Row="1" TextWrapping="Wrap" Text=""
+                 VerticalScrollBarVisibility="Visible" AcceptsReturn="True"/>
     </Grid>
 </Window>
