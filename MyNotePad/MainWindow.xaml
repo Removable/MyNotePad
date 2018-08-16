@@ -4,19 +4,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyNotePad"
-        mc:Ignorable="d"
-        Title="记事本" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,0,0.5">
+        mc:Ignorable="d" x:Name="MainWin"
+        Title="无标题 - 记事本" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="403*"/>
+            <RowDefinition Height="399*"/>
         </Grid.RowDefinitions>
-        <Menu x:Name="Menu" Grid.Row="0" Background="White">
-            <MenuItem Header="文件" Height="20" Width="38">
+        <Menu x:Name="Menu" Grid.Row="0" Background="White" MouseEnter="Menu_MouseEnter">
+            <MenuItem Header="文件" Height="20">
                 <MenuItem Header="新建" Click="CreateNewWindow"></MenuItem>
+                <MenuItem Header="打开..." Click="OpenFile"></MenuItem>
+                <MenuItem Header="保存" Click="SaveCurrentContent"></MenuItem>
+                <MenuItem Header="另存为..." Click="SaveAs"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="退出" Click="Exit"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="编辑" Height="20">
+                <MenuItem Header="剪切" x:Name="CutMenu" Click="CutMenuClick"></MenuItem>
+                <MenuItem Header="复制" x:Name="CopyMenu" Click="CopyMenuClick"></MenuItem>
+                <MenuItem Header="粘贴" x:Name="PasteMenu" Click="PasteMenuClick"></MenuItem>
+                <MenuItem Header="删除" x:Name="DelMenu" Click="DelMenuClick"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="全选" Click="SelectAllMenuClick"></MenuItem>
+                <MenuItem Header="时间/日期" Click="PasteDateTime"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="格式" Height="20">
+                <MenuItem Header="自动换行" x:Name="AutoWrapMenu" IsCheckable="True" Click="AutoWrap"></MenuItem>
+                <MenuItem Header="字体..."></MenuItem>
+            </MenuItem>
+            <!--<MenuItem Header="查看" Height="20">
+                <MenuItem Header="状态栏" x:Name="StateMenu" IsCheckable="True" Click="StateMenu_Click"></MenuItem>
+            </MenuItem>-->
+            <MenuItem Header="帮助" Height="20">
+                <MenuItem Header="关于"></MenuItem>
             </MenuItem>
         </Menu>
-        <TextBox x:Name="MainTextBox" Grid.Row="1" TextWrapping="Wrap" Text=""
-                 VerticalScrollBarVisibility="Visible" AcceptsReturn="True"/>
+        <TextBox x:Name="MainTextBox" TextWrapping="NoWrap"
+                 VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True" TextChanged="MainTextBoxContentChanged" Grid.Row="1"/>
     </Grid>
 </Window>
